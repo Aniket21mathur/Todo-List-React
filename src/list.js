@@ -1,4 +1,6 @@
 import React, { Component } from "react";
+import Todo from "./Todo";
+import "./List.css";
 
 class List extends Component {
 constructor(props){
@@ -7,8 +9,11 @@ this.state={
 	items:[]
 };
 	this.addItem=this.addItem.bind(this);
+	this.deleteItem=this.deleteItem.bind(this);
 
 }
+
+
 
 addItem(e) {
 	if(this._inputElement.value!==""){
@@ -28,17 +33,28 @@ addItem(e) {
 	console.log(this.state.items);
 	e.preventDefault();
 }
+
+deleteItem(key){
+	var filteredItems=this.state.items.filter(function(item){
+		return (item.key!=key);
+	});
+	this.setState({
+		items:filteredItems
+	});
+}
 	render(){
 		return(
 
 			<div className="listMain">
+			<div>Todo list</div>
 			<div className="header">
 			<form onSubmit={this.addItem}>
 			<input placeholder="enter what to do" ref={(a) => this._inputElement = a}>
 			</input>
-			<button type="submit">get it in</button>
+			<button type="submit">IN</button>
 			</form>
 			</div>
+			<Todo entries={this.state.items} delete={this.deleteItem}/>
 			</div>
 
 
