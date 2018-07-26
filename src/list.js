@@ -46,7 +46,7 @@ deleteItem(key){
 		return(
 
 			<div className="listMain">
-			<div>Todo list</div>
+			<div className="heading">Todo list</div>
 			<div className="header">
 			<form onSubmit={this.addItem}>
 			<input placeholder="enter what to do" ref={(a) => this._inputElement = a}>
